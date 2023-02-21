@@ -1,0 +1,23 @@
+import requests
+
+API_KEY = 'GOOGLE_API_KEY'
+
+def get_answer(query):
+    url = 'https://kgsearch.googleapis.com/v1/entities:search'
+    params = {
+        'query': query,
+        'key': API_KEY,
+        'limit': 1,
+        'indent': True,
+    }
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if 'itemListElement' in data:
+        item = data['itemListElement'][0]['result']
+        name = item.get('name', 'Unknown')
+        description = item.get('description', 'No description available.')
+        url = item.get('url', '')
+        return f'{name}: {description}\n{url}'
+    else:
+        return 'Sorry, I could not find an answer to your question.'
