@@ -1,3 +1,3 @@
-# google-knowledge-graph
+# Google Knowledge Graph
 
 Trying out Google Knowledge Graph API.
